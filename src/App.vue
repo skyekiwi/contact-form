@@ -30,13 +30,12 @@
           <p>
             <span class="fh2">Thank you. 🙏</span>
             <span class="f-section-text">
-              Great work, the survey is completed, and our demo is done. You can review your answers or press submit.
+              You can review your answers or press submit. Follow us on the below social links as well!
             </span>
           </p>
-          <p class="f-description">Note: your data will only be accessible by the SkyeKiwi Team (i.e. the creator of this survey).</p>
+          <p class="f-description">Note: your data will only be accessible by the SkyeKiwi.</p>
         </div>  
       </template>
-
       <template v-slot:completeButton>
         <div class="f-submit" v-if="!submitted">
           <button 
@@ -80,7 +79,7 @@
         questions: [
           new QuestionModel({
             id: 'intro',
-            title: 'Welcome! An Decentralized Encrypted Survey 😊',
+            title: 'Welcome! Signup to receive updates from SkyeKiwi 😊',
             content: 'Powered by the SkyeKiwi Protocol',
             description: 'Only you and the this survey creator is able to decrypt your submit. 🍿️',
             type: QuestionType.SectionBreak
@@ -130,6 +129,7 @@
             type: QuestionType.MultipleChoice,
             helpTextShow: false,
             required: true,
+            multiple: true,
             options: [
               new ChoiceOption({
                 label: 'Web3 Foundation Grant Page'
@@ -142,6 +142,9 @@
               }),
               new ChoiceOption({
                 label: 'Twitter'
+              }),
+              new ChoiceOption({
+                label: 'Word of Mouth'
               }),
               new ChoiceOption({
                 label: 'Others'
@@ -193,18 +196,27 @@
         /* eslint-disable-next-line no-unused-vars */
         const data = this.getData()
 
-        console.log(data)
-        /*
-          You can use Fetch API to send the data to your server, eg.:
+        console.log(JSON.stringify({
+          full_name: data.answers[1],
+          email: data.answers[2],
+          types: data.answers[3],
+          channel: data.answers[4],
+        }))
 
-          fetch(url, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
+        fetch('https://expressjs-mongoose-production-8hw4.up.railway.app', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            full_name: data.answers[1],
+            email: data.answers[2],
+            types: data.answers[3],
+            channel: data.answers[4],
           })
-        */
+        }).then(() => {
+          window.location.href = "https://skye.kiwi"
+        })
       },
 
       getData() {
@@ -232,6 +244,6 @@
 </script>
 
 <style lang="css">
-  @import '~@ditdot-dev/vue-flow-form/dist/vue-flow-form.css';
-  @import '~@ditdot-dev/vue-flow-form/dist/vue-flow-form.theme-minimal.css';
+@import '~@ditdot-dev/vue-flow-form/dist/vue-flow-form.css';
+@import '~@ditdot-dev/vue-flow-form/dist/vue-flow-form.theme-minimal.css';
 </style>

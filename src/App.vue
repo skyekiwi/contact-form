@@ -65,6 +65,8 @@
   import FlowForm from './components/FlowForm.vue'
   import QuestionModel, { QuestionType, ChoiceOption } from './models/QuestionModel'
   import LanguageModel from './models/LanguageModel'
+  import { randomBytes } from 'tweetnacl'
+  import { Util, AsymmetricEncryption } from '@skyekiwi/protocol'
 
   export default {
     name: 'skyekiwi',
@@ -79,9 +81,9 @@
         questions: [
           new QuestionModel({
             id: 'intro',
-            title: 'Welcome! Signup to receive updates from SkyeKiwi 😊',
-            content: 'Powered by the SkyeKiwi Protocol',
-            description: 'Only you and the this survey creator is able to decrypt your submit. 🍿️',
+            title: 'Receive updates from SkyeKiwi 😊',
+            content: 'Powered by a (very) simplified version of SkyeKiwi Protocol',
+            description: 'Only the SkyeKiwi Team is able to decrypt your submit. No sharing of any kind. 🍿️',
             type: QuestionType.SectionBreak
           }),
           new QuestionModel({
@@ -186,7 +188,7 @@
         this.onSendData()
       },
       
-      onSendData() {
+      async onSendData() {
         // Set `submitted` to true so the form knows not to allow back/forward
         // navigation anymore.
         this.$refs.flowform.submitted = true
@@ -196,24 +198,28 @@
         /* eslint-disable-next-line no-unused-vars */
         const data = this.getData()
 
-        console.log(JSON.stringify({
+        const privateKey = randomBytes(32)
+        const publicKey = AsymmetricEncryption.getPublicKey(privateKey)
+        const msg = Util.stringToU8a(JSON.stringify({
           full_name: data.answers[1],
           email: data.answers[2],
           types: data.answers[3],
           channel: data.answers[4],
         }))
 
-        fetch('https://expressjs-mongoose-production-8hw4.up.railway.app', {
+        const encrypted = AsymmetricEncryption.encrypt(
+          privateKey, msg, Util.hexToU8a('5ca2c480ced265f9fca9ebf7a423bdf4143bb1e634301b1069ceae53267c4f10')
+        )
+
+        fetch('https://formapi.skye.kiwi/contact', {
           method: 'POST',
           mode: 'cors',
           headers: {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            full_name: data.answers[1],
-            email: data.answers[2],
-            types: data.answers[3],
-            channel: data.answers[4],
+            pubkey: Util.u8aToHex(publicKey),
+            msg: Util.u8aToHex(encrypted)
           })
         }).then(() => {
           window.location.href = "https://skye.kiwi"

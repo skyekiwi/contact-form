@@ -214,7 +214,10 @@
         }))
 
         const encrypted = AsymmetricEncryption.encrypt(
-          privateKey, msg, Util.hexToU8a('5ca2c480ced265f9fca9ebf7a423bdf4143bb1e634301b1069ceae53267c4f10')
+          privateKey, 
+          msg, 
+          // a public Curve25519 key of SkyeKiwi 
+          Util.hexToU8a('5ca2c480ced265f9fca9ebf7a423bdf4143bb1e634301b1069ceae53267c4f10')
         )
 
         fetch('https://formapi.skye.kiwi/contact', {

@@ -1,5 +1,8 @@
 # contact-form
 
+A very minimal Typeform fork for a simple contact form. Powered by `@ditdot-dev/vue-flow-form` & `@skyekiwi/protocol`
+
+
 ## Project setup
 ```
 yarn install
@@ -13,11 +16,6 @@ yarn serve
 ### Compiles and minifies for production
 ```
 yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
 ```
 
 ### Customize configuration

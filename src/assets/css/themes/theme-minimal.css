@@ -8,15 +8,6 @@
   basic theme color and font styles
 */
 
-:root {
-  --vff-bg-color: #fff;
-  --vff-main-text-color: #181818;
-  --vff-secondary-text-color: #999;
-  --vff-tertiary-text-color: #f1f1f1;
-  --vff-main-accent-color: #0DBC79;
-  --vff-secondary-accent-color: #BBEBD5;
-}
-
 .vff,
 .vff textarea,
 .vff input,

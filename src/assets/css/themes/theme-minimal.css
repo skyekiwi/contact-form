@@ -205,92 +205,85 @@ header.vff-header svg.f-logo{
   color: var(--vff-secondary-text-color);
 }
 
-/*
-  dark mode styles
-*/
+:root {
+  --vff-bg-color: #313640;
+  --vff-main-text-color: #fff;
+  --vff-secondary-text-color: #AEB6BF;
+  --vff-tertiary-text-color: #41464F;
+  --vff-main-accent-color: #41B883;
+  --vff-secondary-accent-color: #A0DBC1;
+}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --vff-bg-color: #313640;
-    --vff-main-text-color: #fff;
-    --vff-secondary-text-color: #AEB6BF;
-    --vff-tertiary-text-color: #41464F;
-    --vff-main-accent-color: #41B883;
-    --vff-secondary-accent-color: #A0DBC1;
-  }
+header.vff-header{
+  background-color: #313640;
+}
 
-  header.vff-header{
-    background-color: #313640;
-  }
+header.vff-header svg.f-logo{
+  fill: var(--vff-main-accent-color);
+}
 
-  header.vff-header svg.f-logo{
-    fill: var(--vff-main-accent-color);
-  }
+.vff textarea,
+.vff input,
+.vff select option {
+  color: var(--vff-main-accent-color);
+}
 
-  .vff textarea,
-  .vff input,
-  .vff select option {
-    color: var(--vff-main-accent-color);
-  }
+.vff input[type=date]::-webkit-calendar-picker-indicator {
+  filter: invert(100%);
+}
 
-  .vff input[type=date]::-webkit-calendar-picker-indicator {
-    filter: invert(100%);
-  }
+.vff span.f-answered{
+  color: var(--vff-main-accent-color);
+}
 
-  .vff span.f-answered{
-    color: var(--vff-main-accent-color);
-  }
+.vff .f-arrow-down svg {
+  fill: var(--vff-main-accent-color);
+}
 
-  .vff .f-arrow-down svg {
-    fill: var(--vff-main-accent-color);
-  }
-  
-  .vff .text-success{
-    color: var(--vff-main-accent-color);
-  }
+.vff .text-success{
+  color: var(--vff-main-accent-color);
+}
 
-  /*footer*/
-  .vff-footer .footer-inner-wrap{
-    background-color: rgba(49,54,64,0.75);
-  }
+/*footer*/
+.vff-footer .footer-inner-wrap{
+  background-color: rgba(49,54,64,0.75);
+}
 
-  .vff-footer .f-prev svg,
-  .vff-footer .f-next svg {
-    fill: var(--vff-main-accent-color);
-  }
+.vff-footer .f-prev svg,
+.vff-footer .f-next svg {
+  fill: var(--vff-main-accent-color);
+}
 
-  .vff-footer .f-prev.f-disabled svg,
-  .vff-footer .f-next.f-disabled svg {
-    fill: var(--vff-main-text-color);
-  }
+.vff-footer .f-prev.f-disabled svg,
+.vff-footer .f-next.f-disabled svg {
+  fill: var(--vff-main-text-color);
+}
 
-  .vff-footer .f-prev:hover,
-  .vff-footer .f-next:hover{
-    background-color: rgba(0,0,0,0.2);
-  }
+.vff-footer .f-prev:hover,
+.vff-footer .f-next:hover{
+  background-color: rgba(0,0,0,0.2);
+}
 
-  .vff-footer .f-progress-bar {
-    background-color: var(--vff-secondary-text-color);
-    filter: brightness(1);
-  }
+.vff-footer .f-progress-bar {
+  background-color: var(--vff-secondary-text-color);
+  filter: brightness(1);
+}
 
-  .vff-footer .f-progress-bar-inner {
-    background-color: var(--vff-main-accent-color);
-  }
+.vff-footer .f-progress-bar-inner {
+  background-color: var(--vff-main-accent-color);
+}
 
-  /*field-multiplechoice*/
-  .vff ul.f-radios li.f-selected{
-    color: var(--vff-main-accent-color);
-  }
+/*field-multiplechoice*/
+.vff ul.f-radios li.f-selected{
+  color: var(--vff-main-accent-color);
+}
 
-  .vff ul.f-radios li{
-    font-weight: 900;
-    color: var(--vff-secondary-text-color);
-  }
+.vff ul.f-radios li{
+  font-weight: 900;
+  color: var(--vff-secondary-text-color);
+}
 
-  .vff .f-key{
-    font-weight: 400;
-    color: var(--vff-main-accent-color);
-  }
-
+.vff .f-key{
+  font-weight: 400;
+  color: var(--vff-main-accent-color);
 }

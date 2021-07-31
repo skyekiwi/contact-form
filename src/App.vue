@@ -30,10 +30,10 @@
           <p>
             <span class="fh2">Thank you. 🙏</span>
             <span class="f-section-text">
-              You can review your answers or press submit. Follow us on the below social links as well!
+              You can review your answers or press submit. Follow us on the social links as well!
             </span>
           </p>
-          <p class="f-description">Note: your data will only be accessible by the SkyeKiwi.</p>
+          <p class="f-description">Note: your data will only be accessible by the SkyeKiwi Team.</p>
         </div>  
       </template>
       <template v-slot:completeButton>
@@ -81,22 +81,22 @@
         questions: [
           new QuestionModel({
             id: 'intro',
-            title: 'Receive updates from SkyeKiwi 😊',
-            content: 'Powered by a (very) simplified version of SkyeKiwi Protocol',
-            description: 'Only the SkyeKiwi Team is able to decrypt your submit. No sharing of any kind. 🍿️',
+            title: 'Stay Tuned @ SkyeKiwi',
+            content: '',
+            description: 'Powered by a (very) simplified version of SkyeKiwi Protocol. Your submit is decyrptable by the SkyeKiwi Team only and we will keep it a secret for ya. 🍿️',
             type: QuestionType.SectionBreak
           }),
           new QuestionModel({
             id: 'full_name',
-            tagline: 'Hi! Tell us your name! 😊',
-            title: 'What is your full name?',
+            tagline: 'Hi! We\'d like to know you! 😊',
+            title: 'Name',
             type: QuestionType.Text,
             required: true,
             placeholder: 'Your Name'
           }),
           new QuestionModel({
             id: 'email',
-            tagline: "Nice to meet you 👀, let's continue",
+            tagline: "Nice to meet you 👀",
             title: 'What\'s a good email address?',
             description: "No Spam. We Promise.",
             type: QuestionType.Email,
@@ -121,7 +121,13 @@
                 label: 'Designer'
               }),
               new ChoiceOption({
-                label: 'Others'
+                label: 'Investor'
+              }),
+              new ChoiceOption({
+                label: 'Other'
+              }),
+              new ChoiceOption({
+                label: 'Secret'
               })
             ]
           }),
@@ -134,7 +140,7 @@
             multiple: true,
             options: [
               new ChoiceOption({
-                label: 'Web3 Foundation Grant Page'
+                label: 'Web3 Foundation'
               }),
               new ChoiceOption({
                 label: 'Website'
@@ -252,5 +258,5 @@
 
 <style lang="css">
 @import '~@ditdot-dev/vue-flow-form/dist/vue-flow-form.css';
-@import '~@ditdot-dev/vue-flow-form/dist/vue-flow-form.theme-minimal.css';
+@import './assets/css/themes/theme-minimal.css';
 </style>

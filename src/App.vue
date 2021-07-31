@@ -205,6 +205,7 @@
 
         fetch('https://expressjs-mongoose-production-8hw4.up.railway.app', {
           method: 'POST',
+          mode: 'cors',
           headers: {
             'Content-Type': 'application/json'
           },

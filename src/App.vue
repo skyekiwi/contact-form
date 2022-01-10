@@ -28,12 +28,12 @@
      <template v-slot:complete>
         <div class="f-section-wrap">
           <p>
-            <span class="fh2">Thank you. 🙏</span>
+            <span class="fh2">Sit tight ... </span>
             <span class="f-section-text">
-              You can review your answers or press submit. Follow us on the social links as well!
+              Follow us on social media. 
             </span>
           </p>
-          <p class="f-description">Note: your data will only be accessible by the SkyeKiwi Team.</p>
+          <p class="f-description"> </p>
         </div>  
       </template>
       <template v-slot:completeButton>
@@ -63,7 +63,7 @@
 
 <script>
   import FlowForm from './components/FlowForm.vue'
-  import QuestionModel, { QuestionType, ChoiceOption } from './models/QuestionModel'
+  import QuestionModel, { QuestionType } from './models/QuestionModel'
   import LanguageModel from './models/LanguageModel'
   import { randomBytes } from 'tweetnacl'
   import { Util, AsymmetricEncryption } from '@skyekiwi/protocol'
@@ -81,14 +81,13 @@
         questions: [
           new QuestionModel({
             id: 'intro',
-            title: 'Stay Tuned @ SkyeKiwi',
-            content: '',
-            description: 'Powered by a (very) simplified version of SkyeKiwi Protocol. Your submit is decyrptable by the SkyeKiwi Team only and we will keep it a secret for ya. 🍿️',
+            title: 'Get excited! KiwiSign is coming soon ...',
+            content: 'Subscribe to be the first to know about our launch.',
+            description: 'Powered by the SkyeKiwi Protocol. Your submit is decyrptable by the SkyeKiwi Team only. 🍿️',
             type: QuestionType.SectionBreak
           }),
           new QuestionModel({
             id: 'full_name',
-            tagline: 'Hi! We\'d like to know you! 😊',
             title: 'Name',
             type: QuestionType.Text,
             required: true,
@@ -96,71 +95,11 @@
           }),
           new QuestionModel({
             id: 'email',
-            tagline: "Nice to meet you 👀",
-            title: 'What\'s a good email address?',
+            title: 'Email',
             description: "No Spam. We Promise.",
             type: QuestionType.Email,
             required: true,
             placeholder: 'Your Email...'
-          }),
-          new QuestionModel({
-            id: 'types',
-            title: 'Which of the following choice(s) best describes you?',
-            type: QuestionType.MultipleChoice,
-            multiple: true,
-            helpText: 'Select all that apply. 👇',
-            required: true,
-            options: [
-              new ChoiceOption({
-                label: 'Developer'
-              }),
-              new ChoiceOption({
-                label: 'Program Manager'
-              }),
-              new ChoiceOption({
-                label: 'Designer'
-              }),
-              new ChoiceOption({
-                label: 'Investor'
-              }),
-              new ChoiceOption({
-                label: 'Other'
-              }),
-              new ChoiceOption({
-                label: 'Secret'
-              })
-            ]
-          }),
-          new QuestionModel({
-            id: 'channel',
-            title: 'How did you hear about us?',
-            type: QuestionType.MultipleChoice,
-            helpTextShow: false,
-            required: true,
-            multiple: true,
-            options: [
-              new ChoiceOption({
-                label: 'Web3 Foundation'
-              }),
-              new ChoiceOption({
-                label: 'Website'
-              }),
-              new ChoiceOption({
-                label: 'Medium'
-              }),
-              new ChoiceOption({
-                label: 'Twitter'
-              }),
-              new ChoiceOption({
-                label: 'Word of Mouth'
-              }),
-              new ChoiceOption({
-                label: 'Others'
-              })
-            ],
-            jump: {
-              _other: '_submit'
-            }
           })
         ]
       }
@@ -209,8 +148,6 @@
         const msg = Util.stringToU8a(JSON.stringify({
           full_name: data.answers[1],
           email: data.answers[2],
-          types: data.answers[3],
-          channel: data.answers[4],
         }))
 
         const encrypted = AsymmetricEncryption.encrypt(
@@ -220,7 +157,7 @@
           Util.hexToU8a('5ca2c480ced265f9fca9ebf7a423bdf4143bb1e634301b1069ceae53267c4f10')
         )
 
-        fetch('https://formapi.skye.kiwi/contact', {
+        fetch('https://formapi.skye.kiwi/contact/kiwisign', {
           method: 'POST',
           mode: 'cors',
           headers: {

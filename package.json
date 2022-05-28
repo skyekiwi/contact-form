@@ -8,16 +8,23 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.17.12",
+    "@babel/plugin-proposal-object-rest-spread": "^7.18.0",
+    "@babel/plugin-proposal-private-methods": "^7.17.12",
     "@ditdot-dev/vue-flow-form": "^1.1.7",
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
     "@fortawesome/vue-fontawesome": "^2.0.2",
-    "@skyekiwi/protocol": "^0.2.3",
+    "@open-wc/webpack-import-meta-loader": "^0.4.7",
+    "@skyekiwi/crypto": "^0.7.6",
+    "@skyekiwi/util": "^0.7.6",
     "core-js": "^3.6.5",
-    "vue": "^2.6.11"
+    "vue": "^2.6.11",
+    "@babel/preset-env": "^7.18.2",
+    "@babel/runtime": "^7.18.3"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-babel": "^5.0.4",
     "@vue/cli-plugin-eslint": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
     "babel-eslint": "^10.1.0",

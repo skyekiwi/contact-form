@@ -65,8 +65,9 @@
   import FlowForm from './components/FlowForm.vue'
   import QuestionModel, { QuestionType, ChoiceOption } from './models/QuestionModel'
   import LanguageModel from './models/LanguageModel'
-  import { randomBytes } from 'tweetnacl'
-  import { Util, AsymmetricEncryption } from '@skyekiwi/protocol'
+
+  import { AsymmetricEncryption } from '@skyekiwi/crypto'
+  import * as Util from '@skyekiwi/util'
 
   export default {
     name: 'skyekiwi',
@@ -204,8 +205,6 @@
         /* eslint-disable-next-line no-unused-vars */
         const data = this.getData()
 
-        const privateKey = randomBytes(32)
-        const publicKey = AsymmetricEncryption.getPublicKey(privateKey)
         const msg = Util.stringToU8a(JSON.stringify({
           full_name: data.answers[1],
           email: data.answers[2],
@@ -214,7 +213,6 @@
         }))
 
         const encrypted = AsymmetricEncryption.encrypt(
-          privateKey, 
           msg, 
           // a public Curve25519 key of SkyeKiwi 
           Util.hexToU8a('5ca2c480ced265f9fca9ebf7a423bdf4143bb1e634301b1069ceae53267c4f10')
@@ -227,7 +225,6 @@
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            pubkey: Util.u8aToHex(publicKey),
             msg: Util.u8aToHex(encrypted)
           })
         }).then(() => {

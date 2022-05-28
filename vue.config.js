@@ -1,26 +1,37 @@
 module.exports = {
-  chainWebpack: config => {
-    config.module
-      .rule('mjs$')
-      .test(/\.mjs$/)
-      .include
-        .add(/node_modules/)
-        .end()
-      .type('javascript/auto');
-    
-    config.module
-      .rule('js$')
-      .test(/\.js$/)
-      .include
-        .add(/node_modules\/ipfs-core/)
-        .add(/node_modules\/@skyekiwi/)
-        .end()
-      .use('babel-loader')
-      .loader('babel-loader');
-  },
   configureWebpack: {
-    resolve: {
-      extensions: ['*', '.mjs', '.js', '.vue', '.json']
+    module: {
+      rules: [
+        {
+          test: /\.js$/,
+          // test: /node_modules[/\\]@polkadot*.js$/,
+          loader: require.resolve('@open-wc/webpack-import-meta-loader'),
+          // loader: '@open-wc/webpack-import-meta-loader',
+          exclude: /\.vue$/,
+        },
+
+        {
+          test: /\.m?js$/,
+          include: /node_modules[/\\|]@(polkadot|skyekiwi)/i,
+          // exclude: /(node_modules|bower_components)/,
+          use: {
+            loader: 'babel-loader',
+            options: {
+              presets: [
+                '@babel/preset-env',
+                '@vue/cli-plugin-babel/preset',
+              ],
+              plugins: [
+                "@babel/plugin-proposal-private-methods",
+                "@babel/plugin-proposal-class-properties",
+                '@babel/plugin-proposal-object-rest-spread',
+              ]
+            }
+          }
+        },
+
+
+      ]
     }
-  }
+  }, 
 }
